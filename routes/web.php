@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('fadeback', function () {
+    return 'You are here.';
+});

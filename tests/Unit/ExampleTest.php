@@ -16,4 +16,10 @@ class ExampleTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    public function it_goes_to_a_simple_url()
+    {
+        $this->get('/fadeback')
+            ->assertSee('You are here.');
+    }
 }
