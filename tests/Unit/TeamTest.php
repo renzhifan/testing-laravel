@@ -95,4 +95,15 @@ class TeamTest extends TestCase
         $this->assertEquals(1,$team->count());
     }
 
+    public function testWhenAddingManyMembersAtOnceYouStillMayNotExceedTheTeamMaximunSize()
+    {
+        $team = factory('App\Team')->create(['size' => 2]);
+
+        $users = factory('App\User',3)->create();
+
+        $this->expectException('Exception');
+
+        $team->add($users);
+    }
+
 }
