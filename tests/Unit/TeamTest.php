@@ -10,14 +10,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class TeamTest extends TestCase
 {
     /** @test */
-    public function a_team_has_a_name()
+    public function testATeamHasAName()
     {
         $team = new Team(['name' => 'Acme']);
 
         $this->assertEquals('Acme',$team->name);
     }
     /** @test */
-    public function a_team_can_add_members()
+    public function testATeamCanAddMembers()
     {
         $team = factory('App\Team')->create();
 
@@ -29,7 +29,7 @@ class TeamTest extends TestCase
 
         $this->assertEquals(2,$team->count());
     }
-    public function a_team_has_a_maximum_size()
+    public function testATeamHasAMaximumSize()
     {
         $team = factory('App\Team')->create(['size' => 2]);
 
@@ -48,7 +48,7 @@ class TeamTest extends TestCase
         $team->add($userThree);
     }
 
-    public function a_team_can_add_multiple_members_at_once()
+    public function testATeamCanAddMultipleMembersAtOnce()
     {
         $team = factory('App\Team')->create();
 
@@ -58,4 +58,41 @@ class TeamTest extends TestCase
 
         $this->assertEquals(2,$team->count());
     }
+    public function testATeamCanRemoveMembers()
+    {
+        $team = factory('App\Team')->create();
+
+        $users = factory('App\User',2)->create();
+
+        $team->add($users);
+
+        $team->remove($users[0]);
+
+        $this->assertEquals(1,$team->count());
+    }
+    public function testATeamCaneRmoveAllMembersAtOnce()
+    {
+        $team = factory('App\Team')->create();
+
+        $users = factory('App\User',2)->create();
+
+        $team->add($users);
+
+        $team->restart($users);
+
+        $this->assertEquals(0,$team->count());
+    }
+    public function testATeamCanRemoveMoreThanOneMembersAtOnce()
+    {
+        $team = factory('App\Team')->create(['size' => 3]);
+
+        $users = factory('App\User',3)->create();
+
+        $team->add($users);
+
+        $team->remove($users->slice(0,2));
+
+        $this->assertEquals(1,$team->count());
+    }
+
 }

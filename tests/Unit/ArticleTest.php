@@ -8,7 +8,7 @@ class ArticleTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_fetches_trending_articles()
+    public function testItFetchesTrendingArticles()
     {
         factory('App\Article',2)->create();
         factory('App\Article')->create(['reads' => 10]);

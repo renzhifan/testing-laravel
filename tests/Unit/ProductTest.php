@@ -19,13 +19,13 @@ class ProductTest extends TestCase
         $this->product = new Product('fallout 4',59);
     }
     /** @test */
-    public function a_product_has_a_name()
+    public function testAProductHasAName()
     {
         $this->assertEquals('fallout 4',$this->product->name());
     }
 
     /** @test */
-    public function a_product_has_a_price()
+    public function testAProductHasAPrice()
     {
         $this->assertEquals(59,$this->product->price());
     }

@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class OrderTest extends TestCase
 {
     /** @test */
-    public function an_order_sonsists_of_products()
+    public function testAnOrderSonsistsOfProducts()
     {
         $order = $this->createOrderWithProducts();
 
@@ -19,14 +19,14 @@ class OrderTest extends TestCase
     }
 
     /** @test */
-    public function an_order_can_determine_the_total_cost_of_all_its_products()
+    public function testAnOrderCanDetermineTheTotalCostOfAllItsProducts()
     {
         $order = $this->createOrderWithProducts();
 
         $this->assertEquals(66,$order->total());
     }
 
-    protected function createOrderWithProducts()
+    protected function CreateOrderWithProducts()
     {
         $order = new Order;
 
